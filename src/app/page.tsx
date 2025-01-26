@@ -1,7 +1,12 @@
-export default function Home() {
+import CarouselComponent from '@/components/carousel/carousel';
+import React from 'react';
+
+const HomePage = () => {
   return (
     <div>
-      <p className="text-3xl font-bold text-center">NextJS</p>
+      <CarouselComponent />
     </div>
   );
-}
+};
+
+export default HomePage;
