@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTopComponent from "@/components/scrollToTop/scrollToTop";
 import NavbarComponent from "@/components/navbar/navbar";
+import ReduxUseClientProvider from "@/providers/reduxUseClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,13 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavbarComponent/>
-        {children}
-        <ScrollToTopComponent/>
+        <ReduxUseClientProvider>
+          <NavbarComponent />
+          {children}
+          <ScrollToTopComponent />
+        </ReduxUseClientProvider>
       </body>
     </html>
   );

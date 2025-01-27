@@ -1,5 +1,7 @@
+"use client";
 import Link from 'next/link';
 import React from 'react';
+import { Button } from '../ui/button';
 
 const NavbarComponent = () => {
     const navLinks =
@@ -8,7 +10,7 @@ const NavbarComponent = () => {
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Home</a></li></Link>
             <Link href={'/aboutUs'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>About Us</a></li></Link>
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Gallery</a></li></Link>
-            <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Contact Us</a></li></Link> 
+            <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Contact Us</a></li></Link>
         </>
 
 
@@ -45,7 +47,10 @@ const NavbarComponent = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <Link href={'/login'} className='mr-6'>
+                        <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Login</Button>
+                    </Link>
+                    <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Sign Up</Button>
                 </div>
             </div>
         </div>
