@@ -1,9 +1,39 @@
 "use client";
 import Link from 'next/link';
 import React from 'react';
+import {
+    LayoutDashboardIcon,
+    LifeBuoy,
+    LogOut,
+    User,
+} from "lucide-react"
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Button } from '../ui/button';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
+import tokenVerification from '@/utils/tokenVerification';
+import { logOut } from '@/redux/features/authSlice/authSlice';
+import { toast } from 'react-toastify';
+import Image from 'next/image';
 
 const NavbarComponent = () => {
+    const token = useAppSelector((state) => state.auth.token);
+    const dispatch = useAppDispatch();
+
+    const user = token ? tokenVerification(token) : null;
+
+    const handleLogout = () => {
+        dispatch(logOut());
+        toast.success("User Logged Out Successfully");
+    };
     const navLinks =
 
         <>
@@ -47,10 +77,56 @@ const NavbarComponent = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link href={'/login'} className='mr-6'>
-                        <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Login</Button>
-                    </Link>
-                    <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Sign Up</Button>
+                    {
+                        user ?
+
+                            <div>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <div>
+                                            <Image width={50} height={50} className="cursor-pointer rounded-full" src="https://i.ibb.co.com/Qbjbswx/gardening-login-pic.webp" alt="" />
+                                        </div>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-56">
+                                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuItem>
+                                                <User />
+                                                <span>My Bookings</span>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <LayoutDashboardIcon />
+                                                <Link href={'/kowshik'}>
+                                                    <span>Dashboard</span>
+                                                </Link>
+                                            </DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem>
+                                            <LifeBuoy />
+                                            <span>Support</span>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuSeparator />
+                                        <Link href={'/login'} onClick={handleLogout}>
+                                            <DropdownMenuItem className="cursor-pointer">
+                                                <LogOut />
+                                                <span>Log out</span>
+                                            </DropdownMenuItem>
+                                        </Link>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+                            :
+                            <div>
+                                <Link href={'/login'} className='mr-6'>
+                                    <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Login</Button>
+                                </Link>
+                                <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Sign Up</Button>
+                            </div>
+
+                    }
+
                 </div>
             </div>
         </div>

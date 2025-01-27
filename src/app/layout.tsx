@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTopComponent from "@/components/scrollToTop/scrollToTop";
 import NavbarComponent from "@/components/navbar/navbar";
-import ReduxUseClientProvider from "@/providers/reduxUseClientProvider";
+import ReduxUseClientProvider from "@/providers/ReduxUseClientProvider";
+import ToastProvider from "@/providers/ToastProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
           {children}
           <ScrollToTopComponent />
         </ReduxUseClientProvider>
+        <ToastProvider/>
       </body>
     </html>
   );

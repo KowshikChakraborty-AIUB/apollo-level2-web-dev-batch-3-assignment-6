@@ -18,9 +18,17 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { useLogInMutation } from "@/redux/api/authApi/authApi";
 import Image from "next/image";
+import { useAppDispatch } from "@/redux/hook";
+import tokenVerification from "@/utils/tokenVerification";
+import { setUser } from "@/redux/features/authSlice/authSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginComponent = () => {
     const [userLoginInfo, { isLoading }] = useLogInMutation();
+    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof loginValidationSchema>>({
         resolver: zodResolver(loginValidationSchema),
@@ -44,11 +52,24 @@ const LoginComponent = () => {
         try {
             const res: any = await userLoginInfo(values);
 
-            console.log(res?.data);
+            if (res?.data?.success) {
+                const token = res?.data?.token;
+                const user = tokenVerification(token);
+                dispatch(setUser({ user, token }));
+                router.push("/");
+                toast.success(res?.data?.message);
+                
+            }
+            if (res.error) {
+                toast.error(res?.error?.message || res?.error?.data?.message);
+                console.log(res?.error?.message || res?.error?.data?.message);
+            }
 
 
         } catch (error: any) {
+            toast.error(error.message);
             console.log(error.message);
+            
         }
     }
     return (

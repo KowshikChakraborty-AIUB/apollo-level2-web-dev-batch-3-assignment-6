@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { TUser } from "@/types/userTypes";
+//import Cookies from "js-cookie";
 
 export type TInitialState = {
     user: null | TUser;
@@ -20,10 +21,12 @@ const authSlice = createSlice({
             const { user, token } = action.payload;
             state.user = user;
             state.token = token;
+            //Cookies.set("accessToken", token);
         },
         logOut: (state) => {
             state.user = null;
             state.token = null;
+            //Cookies.remove("accessToken");
         },
     },
 });
