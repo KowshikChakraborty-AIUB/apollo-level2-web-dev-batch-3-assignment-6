@@ -17,10 +17,12 @@ const signUpValidationSchema = z.object({
         .max(15, 'Phone number should be no more than 15 characters')
         .regex(/^[0-9]+$/, 'Phone number must contain only digits'),
 
+    profileImg: z.string().optional(),
+
     address: z.string()
         .min(1, 'Address is required')
         .max(255, 'Address should not be longer than 255 characters'),
-        
+
     role: z.enum(['user', 'admin']),
 
 });

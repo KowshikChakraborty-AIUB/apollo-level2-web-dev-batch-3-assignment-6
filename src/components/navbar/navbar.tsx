@@ -30,6 +30,8 @@ const NavbarComponent = () => {
 
     const user = token ? tokenVerification(token) : null;
 
+    const userData = useAppSelector((state) => state.auth.user);
+
     const handleLogout = () => {
         dispatch(logOut());
         toast.success("User Logged Out Successfully");
@@ -84,7 +86,7 @@ const NavbarComponent = () => {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <div>
-                                            <Image width={50} height={50} className="cursor-pointer rounded-full" src="https://i.ibb.co.com/Qbjbswx/gardening-login-pic.webp" alt="" />
+                                            <Image width={50} height={50} className={userData?.profileImg ? 'cursor-pointer rounded-full':'bg-white cursor-pointer rounded-full'} src={userData?.profileImg ? userData?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="User Image" />
                                         </div>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="w-56">

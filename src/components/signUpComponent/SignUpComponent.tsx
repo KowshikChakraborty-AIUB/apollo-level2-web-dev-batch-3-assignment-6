@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import signUpValidationSchema from "@/validationSchema/signUpValidationSchema";
+import { imgBBUploadImage } from "@/utils/imgbbUploadImage";
 import { useSignUpMutation } from "@/redux/api/authApi/authApi";
 import tokenVerification from "@/utils/tokenVerification";
 import { useAppDispatch } from "@/redux/hook";
@@ -22,7 +23,7 @@ import { setUser } from "@/redux/features/authSlice/authSlice";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-const SignUp = () => {
+const SignUpComponent = () => {
 
     const [signUp, { isLoading }] = useSignUpMutation();
     const dispatch = useAppDispatch();
@@ -35,12 +36,24 @@ const SignUp = () => {
             email: "",
             password: "",
             phone: "",
+            profileImg: "",
             address: "",
-            role: 'user'
+            role: 'user',
         },
     })
 
     const onSubmit = async (values: z.infer<typeof signUpValidationSchema>) => {
+
+            //Uploading image to imgbb
+            const inputElement = document.querySelector('input[type="file"]') as HTMLInputElement;
+            const file = inputElement?.files?.[0];
+
+            const img = file ? await imgBBUploadImage(file) : undefined
+
+            //setting generated imgbb link to form value
+            values.profileImg = img
+            
+
 
         if (isLoading) {
             return (
@@ -145,6 +158,22 @@ const SignUp = () => {
                             />
                             <FormField
                                 control={form.control}
+                                name="profileImg"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Profile Picture (Optional)</FormLabel>
+                                        <FormControl>
+                                            <Input type="file" placeholder="Your Profile Image" {...field} />
+                                        </FormControl>
+                                        <FormDescription>
+                                            Upload Your Profile Image.
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
                                 name="address"
                                 render={({ field }) => (
                                     <FormItem>
@@ -168,4 +197,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default SignUpComponent;
