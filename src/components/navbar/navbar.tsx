@@ -42,7 +42,7 @@ const NavbarComponent = () => {
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Home</a></li></Link>
             <Link href={'/aboutUs'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>About Us</a></li></Link>
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Gallery</a></li></Link>
-            <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Contact Us</a></li></Link>
+            <Link href={'/contactUs'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Contact Us</a></li></Link>
         </>
 
 
@@ -51,10 +51,10 @@ const NavbarComponent = () => {
             <div className="navbar backdrop-filter backdrop-blur-none bg-opacity-50 bg-black fixed top-0 z-10">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <div tabIndex={0} role="button" className="btn bg-[#6AAF07] bg lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
+                                className="h-5 w-5 text-white"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor">

@@ -80,8 +80,6 @@ const CreatePostsComponent = () => {
 
     }
 
-    //const { data: postsData } = useGetAllPostsQuery({});
-
 
     return (
         <div>
@@ -90,17 +88,6 @@ const CreatePostsComponent = () => {
                 <div className='flex justify-center'>
                     <Button onClick={() => onClick(value)} className="my-6 text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Submit</Button>
                 </div>
-                {/* {
-                    postsData?.data?.map((post: any) =>
-
-                    (<div key={post._id} className="ql-snow">
-                        <div
-                            className="ql-editor"
-                            dangerouslySetInnerHTML={{ __html: post.postContent }}
-                        />
-                    </div>)
-                    )
-                } */}
             </div>
         </div>
     );
