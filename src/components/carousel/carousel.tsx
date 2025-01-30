@@ -10,10 +10,6 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 
-// import ReactQuill from 'react-quill-new'
-// import 'react-quill-new/dist/quill.snow.css'
-// import { Button } from "../ui/button"
-
 
 const CarouselComponent = () => {
 
@@ -39,43 +35,6 @@ const CarouselComponent = () => {
                 "–Audrey Hepburn",
         },
     ];
-
-    // const [value, setValue] = React.useState('')
-
-    // const toolbarOptions = [
-    //     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    //     ['blockquote', 'code-block'],
-    //     ['link', 'image', 'video', 'formula'],
-
-    //     [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    //     [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-    //     [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-    //     [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-    //     [{ 'direction': 'rtl' }],                         // text direction
-
-    //     [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    //     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    //     [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    //     [{ 'font': [] }],
-    //     [{ 'align': [] }],
-
-    //     ['clean']                                         // remove formatting button
-    // ];
-
-    // const modules = {
-    //     toolbar: toolbarOptions,
-    // };
-
-    // const onChange = (content: any, delta: any, source: any, editor: any) => {
-    //     setValue(editor.getHTML());
-    // };
-
-    // const onSubmit = (value: any) => {
-    //     console.log(value);
-    // }
-
-    //console.log(value);
 
 
     return (
@@ -110,16 +69,6 @@ const CarouselComponent = () => {
                 <CarouselPrevious className="ml-16" />
                 <CarouselNext className="mr-16" />
             </Carousel>
-            {/* <div className="min-h-screen my-10 w-1/2 mx-auto">
-                <ReactQuill modules={modules} theme="snow" value={value} onChange={onChange} />
-                <Button onClick={() => onSubmit(value)}>Submit</Button>
-                <div className="ql-snow">
-                    <div
-                        className="ql-editor"
-                        dangerouslySetInnerHTML={{ __html: value }}
-                    />
-                </div>
-            </div> */}
         </div>
     );
 }
