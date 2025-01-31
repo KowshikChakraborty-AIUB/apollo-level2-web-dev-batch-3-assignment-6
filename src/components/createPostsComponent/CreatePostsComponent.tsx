@@ -7,6 +7,7 @@ import { Button } from "../ui/button"
 import { useCreatePostsMutation } from '@/redux/api/postApi/postApi';
 import { toast } from 'react-toastify';
 import ImageResize from 'quill-image-resize-module-react';
+import { useAppSelector } from '@/redux/hook';
 
 Quill.register('modules/imageResize', ImageResize);
 
@@ -48,6 +49,7 @@ const CreatePostsComponent = () => {
     };
 
     const [createPosts, { isLoading }] = useCreatePostsMutation();
+    const userData = useAppSelector((state) => state.auth.user);
 
 
     const onClick = async (value: string) => {
@@ -62,7 +64,9 @@ const CreatePostsComponent = () => {
         }
 
         try {
-            const postData = { postContent: value };
+            console.log(userData);
+            
+            const postData = { userId: userData?._id, postContent: value};
 
             const res: any = await createPosts(postData);
 
@@ -83,7 +87,7 @@ const CreatePostsComponent = () => {
 
     return (
         <div>
-            <div className="min-h-screen my-10 w-1/2 mx-auto">
+            <div className="min-h-screen w-full md:w-3/4 mx-auto">
                 <ReactQuill modules={modules} theme="snow" value={value} onChange={onChange} />
                 <div className='flex justify-center'>
                     <Button onClick={() => onClick(value)} className="my-6 text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Submit</Button>

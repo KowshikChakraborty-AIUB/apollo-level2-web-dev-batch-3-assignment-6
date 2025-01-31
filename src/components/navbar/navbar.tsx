@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React from 'react';
 import {
     LayoutDashboardIcon,
-    LifeBuoy,
     LogOut,
     User,
 } from "lucide-react"
@@ -86,7 +85,7 @@ const NavbarComponent = () => {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <div>
-                                            <Image width={50} height={50} className={userData?.profileImg ? 'cursor-pointer rounded-full':'bg-white cursor-pointer rounded-full'} src={userData?.profileImg ? userData?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="User Image" />
+                                            <Image width={50} height={50} className={userData?.profileImg ? 'cursor-pointer rounded-full w-14 h-14' : 'bg-white cursor-pointer rounded-full'} src={userData?.profileImg ? userData?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="User Image" />
                                         </div>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="w-56">
@@ -95,7 +94,9 @@ const NavbarComponent = () => {
                                         <DropdownMenuGroup>
                                             <DropdownMenuItem>
                                                 <User />
-                                                <span>My Bookings</span>
+                                                <Link href={'/userProfile'}>
+                                                    <span>My Profile</span>
+                                                </Link>
                                             </DropdownMenuItem>
                                             <DropdownMenuItem>
                                                 <LayoutDashboardIcon />
@@ -105,10 +106,6 @@ const NavbarComponent = () => {
                                             </DropdownMenuItem>
                                         </DropdownMenuGroup>
                                         <DropdownMenuSeparator />
-                                        <DropdownMenuItem>
-                                            <LifeBuoy />
-                                            <span>Support</span>
-                                        </DropdownMenuItem>
                                         <DropdownMenuSeparator />
                                         <Link href={'/login'} onClick={handleLogout}>
                                             <DropdownMenuItem className="cursor-pointer">
