@@ -13,11 +13,10 @@ export const imgBBUploadImage = async (file: any) => {
     //     console.log(pair[0] + ': ' + pair[1]);
     // }
 
-
-
+    
     try {
         const response = await fetch(
-            `https://api.imgbb.com/1/upload?key=57132ca050c076c83e461c9803dd19c8`,
+            `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API}`,
             {
                 method: "POST",
                 body: formData
@@ -30,8 +29,8 @@ export const imgBBUploadImage = async (file: any) => {
         }
 
         const result = await response.json();
-        if (result.success) {
-            return result.data.url;
+        if (result?.success) {
+            return result?.data?.url;
         }
 
         throw new Error('Failed to upload image');
