@@ -120,11 +120,11 @@ const NavbarComponent = () => {
                                 </DropdownMenu>
                             </div>
                             :
-                            <div>
-                                <Link href={'/login'} className='mr-6'>
+                            <div className='flex gap-6'>
+                                <Link href={'/login'}>
                                     <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Login</Button>
                                 </Link>
-                                <Link href={'/signUp'}>
+                                <Link href={'/signUp'} className='hidden md:block'>
                                     <Button className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Sign Up</Button>
                                 </Link>
                             </div>
