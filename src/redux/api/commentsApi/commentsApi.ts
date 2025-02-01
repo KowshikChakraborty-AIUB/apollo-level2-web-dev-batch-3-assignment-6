@@ -12,9 +12,19 @@ const commentsApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["comments"],
         }),
+        getCommentsByPostId: builder.query({
+            query: (postId: string) => {
+                return {
+                    url: `api/comments/commentsByPostId/${postId}`,
+                    method: "GET",
+                };
+            },
+            providesTags: ["comments"],
+        }),
     }),
 });
 
 export const {
     useCreateCommentsMutation,
+    useGetCommentsByPostIdQuery,
 } = commentsApi;

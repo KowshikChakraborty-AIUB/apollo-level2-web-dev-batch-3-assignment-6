@@ -11,6 +11,7 @@ import { useGetGardeningPostsByUserIdQuery } from '@/redux/api/postApi/postApi';
 import { useCreateCommentsMutation } from '@/redux/api/commentsApi/commentsApi';
 import { toast } from 'react-toastify';
 import { Button } from '../ui/button';
+import ShowSpecificUserComentsComponent from './ShowSpecificUserComentsComponent';
 
 const UserSpecificPostsComponent = (props: any) => {
     const { userId } = props
@@ -77,6 +78,10 @@ const UserSpecificPostsComponent = (props: any) => {
                                         />
                                     </div>
                                 </CardContent>
+                                <div className='ml-5 mt-5'>
+                                    <p className='text-lg font-bold mb-3'>Comments</p>
+                                    <ShowSpecificUserComentsComponent postId={post?._id} />
+                                </div>
                                 <div>
                                     <div className='flex justify-center items-center gap-4 mt-16 mb-4'>
                                         <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-1/2 rounded px-2 py-2' name="" id=""></textarea>
