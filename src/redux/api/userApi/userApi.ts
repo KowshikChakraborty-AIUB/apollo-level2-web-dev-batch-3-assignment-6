@@ -11,9 +11,20 @@ const userApi = baseApi.injectEndpoints({
             },
             providesTags: ["users"],
         }),
+        followUnfollowUsers: builder.mutation<void, { action: "follow" | "unfollow", userId: string, userIWantToFollowId: string }>({
+            query: ({ action, userId, userIWantToFollowId }) => {
+                return {
+                    url: `/api/users/followUnfollow/${action}/${userId}/${userIWantToFollowId}`,
+                    method: "POST",
+                    body: { action, userId, userIWantToFollowId },
+                };
+            },
+            invalidatesTags: ["users"],
+        }),
     }),
 });
 
 export const {
-    useGetUsersByUserIdQuery
+    useGetUsersByUserIdQuery,
+    useFollowUnfollowUsersMutation
 } = userApi;
