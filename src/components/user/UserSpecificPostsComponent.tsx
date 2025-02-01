@@ -1,6 +1,6 @@
 "use client"
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Card,
     CardContent,
@@ -8,11 +8,53 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { useGetGardeningPostsByUserIdQuery } from '@/redux/api/postApi/postApi';
+import { useCreateCommentsMutation } from '@/redux/api/commentsApi/commentsApi';
+import { toast } from 'react-toastify';
+import { Button } from '../ui/button';
 
 const UserSpecificPostsComponent = (props: any) => {
     const { userId } = props
     const { data: userSpecificPostsData } = useGetGardeningPostsByUserIdQuery(userId);
-    
+
+    const [textareaValue, setTextareaValue] = useState<{ [key: string]: string }>({});
+
+    const handleChange = (postId: any, event: any) => {
+        const newTextareaValues = { ...textareaValue, [postId]: event.target.value };
+
+        setTextareaValue(newTextareaValues);
+    };
+
+    const [createComments, { isLoading }] = useCreateCommentsMutation();
+
+    const handleAddComment = async (postId: any) => {
+        //console.log(textareaValue[postId]);
+        if (isLoading) {
+            return (
+                <>
+                    <div className="flex items-center justify-center">
+                        <p className="ftext-5xl font-bold">Loading...</p>
+                    </div>
+                </>
+            )
+        }
+        try {
+
+            const commentsData = { userId, postId: postId, commentText: textareaValue[postId] };
+
+            const res: any = await createComments(commentsData);
+
+            if (res?.data?.success) {
+                toast.success(res?.data?.message);
+            }
+            if (res?.error) {
+                toast.error(res?.error?.message || res?.error?.data?.message || res?.data?.message);
+            }
+        } catch (error: any) {
+            toast.error(error?.message);
+        }
+
+    }
+
     return (
         <div>
 
@@ -21,7 +63,7 @@ const UserSpecificPostsComponent = (props: any) => {
                     userSpecificPostsData?.data.length
                         ?
                         userSpecificPostsData?.data?.map((post: any) =>
-                            <Card key={post._id} className="bg-[#9bd649] shadow-xl">
+                            <Card key={post._id} className="bg-[#96c456] shadow-xl">
                                 <CardHeader>
                                     <div>
                                         <CardTitle className="text-center">Hello</CardTitle>
@@ -35,7 +77,12 @@ const UserSpecificPostsComponent = (props: any) => {
                                         />
                                     </div>
                                 </CardContent>
-
+                                <div>
+                                    <div className='flex justify-center items-center gap-4 mt-16 mb-4'>
+                                        <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-1/2 rounded px-2 py-2' name="" id=""></textarea>
+                                        <Button onClick={() => handleAddComment(post?._id)} className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Add comment</Button>
+                                    </div>
+                                </div>
                             </Card>
                         )
                         :

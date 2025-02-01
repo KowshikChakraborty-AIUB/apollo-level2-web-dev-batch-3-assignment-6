@@ -64,7 +64,7 @@ const NewsFeedGardeningPosts = () => {
 
                 {
                     postsData?.data?.map((post: any) =>
-                        <Card key={post._id} className="bg-[#9bd649] shadow-xl">
+                        <Card key={post._id} className="bg-[#96c456] shadow-xl">
                             <CardHeader>
                                 <div>
                                     <CardTitle className="text-center">Hello</CardTitle>
@@ -81,7 +81,7 @@ const NewsFeedGardeningPosts = () => {
                             <div>
                                 <div className='flex justify-center items-center gap-4 mt-16 mb-4'>
                                     <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-1/2 rounded px-2 py-2' name="" id=""></textarea>
-                                    <Button onClick={() => handleAddComment(post?._id)}>Add comment</Button>
+                                    <Button onClick={() => handleAddComment(post?._id)} className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Add comment</Button>
                                 </div>
                             </div>
                         </Card>
