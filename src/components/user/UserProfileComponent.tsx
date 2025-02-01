@@ -3,6 +3,7 @@ import { useAppSelector } from '@/redux/hook';
 import Image from 'next/image';
 import React from 'react';
 import CreatePostsComponent from '../createPostsComponent/CreatePostsComponent';
+import UserSpecificPostsComponent from './UserSpecificPostsComponent';
 
 const UserProfileComponent = () => {
     const userData = useAppSelector((state) => state.auth.user);
@@ -41,6 +42,8 @@ const UserProfileComponent = () => {
                 <div className='mx-auto'>
                     <p className='text-center mt-10 mb-4 text-lg font-bold'>Post Something</p>
                     <CreatePostsComponent/>
+                    <p className='text-3xl font-bold text-center mt-20 mb-10'>Your Posts</p>
+                    <UserSpecificPostsComponent userId={userData?._id}/>
                 </div>
             </div>
         </div>
