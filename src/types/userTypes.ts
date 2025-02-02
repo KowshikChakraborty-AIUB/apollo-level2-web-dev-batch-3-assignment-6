@@ -8,4 +8,6 @@ export type TUser = {
     profileImg?: string;
     verified?: boolean;
     payment?: boolean;
+    followers: string[];
+    following: string[];
 };

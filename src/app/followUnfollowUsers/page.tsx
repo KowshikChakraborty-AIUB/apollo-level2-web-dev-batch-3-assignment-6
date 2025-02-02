@@ -5,7 +5,7 @@ const followUnfollowUsersPage = () => {
     return (
         <div>
             <p className='text-3xl font-bold text-center mt-24 mb-14'>People You May Know</p>
-            <FollowUnfollowUsersComponent/>
+            <FollowUnfollowUsersComponent />
         </div>
     );
 };

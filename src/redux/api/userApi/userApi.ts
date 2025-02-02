@@ -1,7 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "../../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
+        getAllUsers: builder.query({
+            query: () => {
+                return {
+                    url: "/api/users",
+                    method: "GET",
+                };
+            },
+            providesTags: ["users"],
+        }),
         getUsersByUserId: builder.query({
             query: (userId: string) => {
                 return {
@@ -11,7 +21,7 @@ const userApi = baseApi.injectEndpoints({
             },
             providesTags: ["users"],
         }),
-        followUnfollowUsers: builder.mutation<void, { action: "follow" | "unfollow", userId: string, userIWantToFollowId: string }>({
+        followUnfollowUsers: builder.mutation<void, { action: "follow" | "unfollow", userId: any, userIWantToFollowId: string }>({
             query: ({ action, userId, userIWantToFollowId }) => {
                 return {
                     url: `/api/users/followUnfollow/${action}/${userId}/${userIWantToFollowId}`,
@@ -26,5 +36,6 @@ const userApi = baseApi.injectEndpoints({
 
 export const {
     useGetUsersByUserIdQuery,
-    useFollowUnfollowUsersMutation
+    useFollowUnfollowUsersMutation,
+    useGetAllUsersQuery
 } = userApi;
