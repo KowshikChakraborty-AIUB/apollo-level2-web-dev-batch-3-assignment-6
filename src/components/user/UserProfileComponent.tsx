@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import CreatePostsComponent from '../createPostsComponent/CreatePostsComponent';
 import UserSpecificPostsComponent from './UserSpecificPostsComponent';
+import Link from 'next/link';
 
 const UserProfileComponent = () => {
     const userData = useAppSelector((state) => state.auth.user);
@@ -22,6 +23,11 @@ const UserProfileComponent = () => {
                                 {userData?.name}
                             </div>
                         </li>
+                        <div className='text-base font-bold flex justify-center gap-6 my-3'>
+                            <p>Followers: 0</p>
+                            <p>Following: 0</p>
+                        </div>
+                        <hr className='border-gray-500' />
                         <li>
                             <div className="text-lg mb-4 md:mb-0">
                                 Email: {userData?.email}
@@ -38,12 +44,17 @@ const UserProfileComponent = () => {
                             </div>
                         </li>
                     </ul>
+                    <div className='mt-6'>
+                        <Link href={'/followUnfollowUsers'}>
+                            <p className='text-center font-bold underline text-[#6AAF07]'>People You May / Want to Follow</p>
+                        </Link>
+                    </div>
                 </div>
                 <div className='mx-auto'>
                     <p className='text-center mt-10 mb-4 text-lg font-bold'>Post Something</p>
-                    <CreatePostsComponent/>
+                    <CreatePostsComponent />
                     <p className='text-3xl font-bold text-center mt-20 mb-10'>Your Posts</p>
-                    <UserSpecificPostsComponent userId={userData?._id}/>
+                    <UserSpecificPostsComponent userId={userData?._id} />
                 </div>
             </div>
         </div>
