@@ -1,13 +1,20 @@
 "use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from '@/redux/hook';
 import Image from 'next/image';
 import React from 'react';
 import CreatePostsComponent from '../createPostsComponent/CreatePostsComponent';
 import UserSpecificPostsComponent from './UserSpecificPostsComponent';
 import Link from 'next/link';
+import { useGetAllUsersQuery } from '@/redux/api/userApi/userApi';
 
 const UserProfileComponent = () => {
+    const { data: allUsersData } = useGetAllUsersQuery({})
     const userData = useAppSelector((state) => state.auth.user);
+
+    const currentLoggedInUser = allUsersData?.data?.filter((user: any) => user?.email == userData?.email)
+    
+
     return (
         <div>
             <div className="flex flex-col md:flex-row mt-20">
@@ -24,8 +31,8 @@ const UserProfileComponent = () => {
                             </div>
                         </li>
                         <div className='text-base font-bold flex justify-center gap-6 my-3'>
-                            <p>Followers: 0</p>
-                            <p>Following: 0</p>
+                            <p>Followers: {currentLoggedInUser && currentLoggedInUser[0]?.followers.length}</p>
+                            <p>Following: {currentLoggedInUser && currentLoggedInUser[0]?.following.length}</p>
                         </div>
                         <hr className='border-gray-500' />
                         <li>
