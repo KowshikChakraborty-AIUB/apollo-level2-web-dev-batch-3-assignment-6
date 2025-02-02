@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { useGetGardeningPostsByUserIdQuery } from '@/redux/api/postApi/postApi';
+import { useGardeningPostsDownvoteMutation, useGardeningPostsUpvoteMutation, useGetGardeningPostsByUserIdQuery } from '@/redux/api/postApi/postApi';
 import { useCreateCommentsMutation } from '@/redux/api/commentsApi/commentsApi';
 import { toast } from 'react-toastify';
 import { Button } from '../ui/button';
@@ -26,6 +26,8 @@ const UserSpecificPostsComponent = (props: any) => {
     };
 
     const [createComments, { isLoading }] = useCreateCommentsMutation();
+    const [gardeningPostsUpvote] = useGardeningPostsUpvoteMutation();
+    const [gardeningPostsDownvote] = useGardeningPostsDownvoteMutation();
 
     const handleAddComment = async (postId: any) => {
         //console.log(textareaValue[postId]);
@@ -56,10 +58,64 @@ const UserSpecificPostsComponent = (props: any) => {
 
     }
 
+    const handleAddUpvotes = async (postId: any, userId: any) => {
+        //console.log(textareaValue[postId]);
+        if (isLoading) {
+            return (
+                <>
+                    <div className="flex items-center justify-center">
+                        <p className="ftext-5xl font-bold">Loading...</p>
+                    </div>
+                </>
+            )
+        }
+        try {
+
+            const res: any = await gardeningPostsUpvote({ postId, userId });
+
+            if (res?.data?.success) {
+                toast.success(res?.data?.message);
+            }
+            if (res?.error) {
+                toast.error(res?.error?.message || res?.error?.data?.message || res?.data?.message);
+            }
+        } catch (error: any) {
+            toast.error(error?.message);
+        }
+
+    }
+
+    const handleAddDownvotes = async (postId: any, userId: any) => {
+        //console.log(textareaValue[postId]);
+        if (isLoading) {
+            return (
+                <>
+                    <div className="flex items-center justify-center">
+                        <p className="ftext-5xl font-bold">Loading...</p>
+                    </div>
+                </>
+            )
+        }
+        try {
+
+            const res: any = await gardeningPostsDownvote({ postId, userId });
+
+            if (res?.data?.success) {
+                toast.success(res?.data?.message);
+            }
+            if (res?.error) {
+                toast.error(res?.error?.message || res?.error?.data?.message || res?.data?.message);
+            }
+        } catch (error: any) {
+            toast.error(error?.message);
+        }
+
+    }
+
     return (
         <div>
 
-            <div className='grid grid-cols-1 w-4/6 mx-auto gap-16'>
+            <div className='grid grid-cols-1 w-full md:w-full lg:w-4/6 mx-auto gap-16'>
                 {
                     userSpecificPostsData?.data.length
                         ?
@@ -83,7 +139,15 @@ const UserSpecificPostsComponent = (props: any) => {
                                     <ShowSpecificUserComentsComponent postId={post?._id} />
                                 </div>
                                 <div>
-                                    <div className='flex justify-center items-center gap-4 mt-16 mb-4'>
+                                    <div className='flex justify-center items-center gap-4 mt-16 mb-4 px-0 md:px-4'>
+                                        <div className='flex flex-col md:flex-row gap-3'>
+                                            <p className='font-bold cursor-pointer' onClick={() => handleAddUpvotes(post?._id, userId)}>Upvote</p>
+                                            <p className='font-bold'>{post?.upvote?.length}</p>
+                                        </div>
+                                        <div className='flex flex-col md:flex-row gap-3'>
+                                            <p className='font-bold cursor-pointer' onClick={() => handleAddDownvotes(post?._id, userId)}>Downvote</p>
+                                            <p className='font-bold'>{post?.downvote?.length}</p>
+                                        </div>
                                         <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-1/2 rounded px-2 py-2' name="" id=""></textarea>
                                         <Button onClick={() => handleAddComment(post?._id)} className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Add comment</Button>
                                     </div>

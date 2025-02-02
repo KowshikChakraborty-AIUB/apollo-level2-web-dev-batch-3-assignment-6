@@ -32,7 +32,29 @@ const postApi = baseApi.injectEndpoints({
             },
             providesTags: ["gardeningposts"],
         }),
+
+        gardeningPostsUpvote: builder.mutation<void, { postId: string, userId: string }>({
+            query: ({ postId, userId }) => {
+                return {
+                    url: `/api/posts/upvote/${postId}/${userId}`,
+                    method: "POST",
+                    body: { postId, userId },
+                };
+            },
+            invalidatesTags: ["gardeningposts"],
+        }),
+
+        gardeningPostsDownvote: builder.mutation<void, { postId: string, userId: string }>({
+            query: ({ postId, userId }) => {
+                return {
+                    url: `/api/posts/downvote/${postId}/${userId}`,
+                    method: "POST",
+                    body: { postId, userId },
+                };
+            },
+            invalidatesTags: ["gardeningposts"],
+        }),
     })
 })
 
-export const { useCreatePostsMutation, useGetAllPostsQuery, useGetGardeningPostsByUserIdQuery } = postApi;
+export const { useCreatePostsMutation, useGetAllPostsQuery, useGetGardeningPostsByUserIdQuery, useGardeningPostsUpvoteMutation, useGardeningPostsDownvoteMutation } = postApi;
