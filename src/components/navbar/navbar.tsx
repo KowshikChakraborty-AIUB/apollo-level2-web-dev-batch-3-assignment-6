@@ -100,8 +100,8 @@ const NavbarComponent = () => {
                                             </DropdownMenuItem>
                                             <DropdownMenuItem>
                                                 <LayoutDashboardIcon />
-                                                <Link href={'/kowshik'}>
-                                                    <span>Dashboard</span>
+                                                <Link href={`/manageUserProfile/${userData?.email}`}>
+                                                    <span>Manage Profile</span>
                                                 </Link>
                                             </DropdownMenuItem>
                                         </DropdownMenuGroup>
