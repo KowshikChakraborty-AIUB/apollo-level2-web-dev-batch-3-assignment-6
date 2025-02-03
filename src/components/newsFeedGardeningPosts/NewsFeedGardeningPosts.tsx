@@ -13,9 +13,13 @@ import { useAppSelector } from '@/redux/hook';
 import { useCreateCommentsMutation } from '@/redux/api/commentsApi/commentsApi';
 import { toast } from 'react-toastify';
 import ShowSpecificUserComentsComponent from '../user/ShowSpecificUserComentsComponent';
+import Image from 'next/image';
 
 const NewsFeedGardeningPosts = () => {
     const { data: postsData } = useGetAllPostsQuery({});
+
+    console.log(postsData?.data);
+
 
     const [textareaValue, setTextareaValue] = useState<{ [key: string]: string }>({});
 
@@ -123,6 +127,10 @@ const NewsFeedGardeningPosts = () => {
                 {
                     postsData?.data?.map((post: any) =>
                         <Card key={post._id} className="bg-[#96c456] shadow-xl">
+                            <div className='flex items-center gap-4 pl-4 pt-4'>
+                                <Image width={56} height={56} src={post?.userId?.profileImg ? post?.userId?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt='' className='h-14 w-14 rounded-full'></Image>
+                                <p className='text-xl font-bold'>{post?.userId?.name}</p>
+                            </div>
                             <CardHeader>
                                 <div>
                                     <CardTitle className="text-center">Hello</CardTitle>
@@ -142,12 +150,12 @@ const NewsFeedGardeningPosts = () => {
                             </div>
                             <div>
                                 <div className='flex justify-center items-center gap-4 mt-16 mb-4 px-0 md:px-3 lg:px-0'>
-                                    <div className='flex flex-col md:flex-row gap-3'>
-                                        <p className='font-bold cursor-pointer' onClick={() => handleAddUpvotes(post?._id, userId)}>Upvote</p>
+                                    <div className='flex flex-col md:flex-row gap-3 items-center'>
+                                        <p className='text-2xl font-bold cursor-pointer' onClick={() => handleAddUpvotes(post?._id, userId)}>&#8593;</p>
                                         <p className='font-bold'>{post?.upvote?.length}</p>
                                     </div>
-                                    <div className='flex flex-col md:flex-row gap-3'>
-                                        <p className='font-bold cursor-pointer' onClick={() => handleAddDownvotes(post?._id, userId)}>Downvote</p>
+                                    <div className='flex flex-col md:flex-row gap-3 items-center'>
+                                        <p className='text-2xl font-bold cursor-pointer' onClick={() => handleAddDownvotes(post?._id, userId)}>&#8595;</p>
                                         <p className='font-bold'>{post?.downvote?.length}</p>
                                     </div>
                                     <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-full md:w-1/2 rounded px-2 py-2' name="" id=""></textarea>
