@@ -22,6 +22,7 @@ import tokenVerification from '@/utils/tokenVerification';
 import { logOut } from '@/redux/features/authSlice/authSlice';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
+import { useGetUserByEmailIdQuery } from '@/redux/api/userApi/userApi';
 
 const NavbarComponent = () => {
     const token = useAppSelector((state) => state.auth.token);
@@ -30,6 +31,8 @@ const NavbarComponent = () => {
     const user = token ? tokenVerification(token) : null;
 
     const userData = useAppSelector((state) => state.auth.user);
+
+    const { data: userCurrentImg } = useGetUserByEmailIdQuery(userData?.email || '');
 
     const handleLogout = () => {
         dispatch(logOut());
@@ -85,7 +88,7 @@ const NavbarComponent = () => {
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <div>
-                                            <Image width={50} height={50} className={userData?.profileImg ? 'cursor-pointer rounded-full w-14 h-14' : 'bg-white cursor-pointer rounded-full'} src={userData?.profileImg ? userData?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="User Image" />
+                                            <Image width={50} height={50} className={userCurrentImg?.data?.profileImg ? 'cursor-pointer rounded-full w-14 h-14' : 'bg-white cursor-pointer rounded-full'} src={userCurrentImg?.data?.profileImg ? userCurrentImg?.data?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="User Image" />
                                         </div>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="w-56">

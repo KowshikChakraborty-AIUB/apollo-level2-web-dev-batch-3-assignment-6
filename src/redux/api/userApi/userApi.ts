@@ -31,11 +31,32 @@ const userApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["users"],
         }),
+        getUserByEmailId: builder.query({
+            query: (email: string) => {
+                return {
+                    url: `api/users/manageUserProfile/${email}`,
+                    method: "GET",
+                };
+            },
+            providesTags: ["users"],
+        }),
+        updateUserByEmailId: builder.mutation<void, { emailId: string, data: any }>({
+            query: ({ emailId, data }) => {
+                return {
+                    url: `/api/users/updateUserProfile/${emailId}`,
+                    method: "PUT",
+                    body: data
+                };
+            },
+            invalidatesTags: ["users"],
+        }),
     }),
 });
 
 export const {
     useGetUsersByUserIdQuery,
     useFollowUnfollowUsersMutation,
-    useGetAllUsersQuery
+    useGetAllUsersQuery,
+    useGetUserByEmailIdQuery,
+    useUpdateUserByEmailIdMutation
 } = userApi;
