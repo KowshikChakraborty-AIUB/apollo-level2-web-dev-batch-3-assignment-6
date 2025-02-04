@@ -16,15 +16,19 @@ import {
 import { Input } from "@/components/ui/input"
 import { imgBBUploadImage } from "@/utils/imgbbUploadImage";
 import profileUpdateValidationSchema from "@/validationSchema/profileUpdateValidationSchema";
-import { useGetUserByEmailIdQuery, useUpdateUserByEmailIdMutation } from "@/redux/api/userApi/userApi";
+import { useDeleteUserMutation, useGetUserByEmailIdQuery, useUpdateUserByEmailIdMutation } from "@/redux/api/userApi/userApi";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hook";
+import { logOut } from "@/redux/features/authSlice/authSlice";
 
 const ManageUserProfileComponent = (props: any) => {
+    const dispatch = useAppDispatch();
     const { emailId } = props;
 
     const { data: userData } = useGetUserByEmailIdQuery(emailId);
     const [updateUserByEmailId, { isLoading }] = useUpdateUserByEmailIdMutation();
+    const [deleteUser] = useDeleteUserMutation();
 
     const router = useRouter();
 
@@ -74,6 +78,33 @@ const ManageUserProfileComponent = (props: any) => {
 
             if (res?.data?.success) {
                 router.push('/userProfile');
+                toast.success(res?.data?.message);
+            }
+            if (res?.error) {
+                toast.error(res?.error?.message || res?.error?.data?.message || res?.data?.message);
+            }
+        } catch (error: any) {
+            toast.error(error?.message);
+        }
+    }
+
+    const handleDeleteProfile = async (userId: any) => {
+        if (isLoading) {
+            return (
+                <>
+                    <div className="flex items-center justify-center">
+                        <p className="ftext-5xl font-bold">Loading...</p>
+                    </div>
+                </>
+            )
+        }
+        try {
+
+            const res: any = await deleteUser(userId);
+
+            if (res?.data?.success) {
+                dispatch(logOut());
+                router.push('/login');
                 toast.success(res?.data?.message);
             }
             if (res?.error) {
@@ -157,6 +188,9 @@ const ManageUserProfileComponent = (props: any) => {
                             <Button type="submit" className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Update</Button>
                         </form>
                     </Form>
+                    <div className="mt-4">
+                        <Button onClick={() => handleDeleteProfile(userData?.data?._id)} className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Delete Profile</Button>
+                    </div>
                 </div>
             </div>
         </div>
