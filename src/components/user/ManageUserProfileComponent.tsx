@@ -192,7 +192,7 @@ const ManageUserProfileComponent = (props: any) => {
                         <Button onClick={() => handleDeleteProfile(userData?.data?._id)} className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Delete Profile</Button>
                     </div> */}
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
-                    <button className="btn mt-4 bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-base font-bold" onClick={() => document?.getElementById('my_modal_5').showModal()}>Delete Profile</button>
+                    <button className="btn mt-4 bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-base font-bold" onClick={() => (document?.getElementById('my_modal_5') as HTMLDialogElement ).showModal()}>Delete Profile</button>
                     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box">
                             <h3 className="font-bold text-lg">Are you sure want to delete your profile?</h3>
