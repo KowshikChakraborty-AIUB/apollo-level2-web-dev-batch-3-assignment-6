@@ -188,9 +188,24 @@ const ManageUserProfileComponent = (props: any) => {
                             <Button type="submit" className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Update</Button>
                         </form>
                     </Form>
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <Button onClick={() => handleDeleteProfile(userData?.data?._id)} className="text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Delete Profile</Button>
-                    </div>
+                    </div> */}
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                    <button className="btn mt-4 bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 text-base font-bold" onClick={() => document?.getElementById('my_modal_5').showModal()}>Delete Profile</button>
+                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Are you sure want to delete your profile?</h3>
+                            <p className="py-4">Press ESC key or click the <b>cencel</b> button below to cencel</p>
+                            <div className="modal-action">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <Button onClick={() => handleDeleteProfile(userData?.data?._id)} className="text-base font-bold text-center bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 mr-4">Delete</Button>
+                                    <button className="btn ransition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Cencel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
                 </div>
             </div>
         </div>
