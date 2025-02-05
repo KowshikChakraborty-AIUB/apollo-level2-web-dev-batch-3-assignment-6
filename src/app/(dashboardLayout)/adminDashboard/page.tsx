@@ -1,9 +1,10 @@
+import AdminProfileComponents from '@/components/admin/AdminProfileComponents';
 import React from 'react';
 
 const AdminDashboardPage = () => {
     return (
         <div>
-            <p className='text-3xl font-bold'>Hello, Admin</p>
+            <AdminProfileComponents/>
         </div>
     );
 };

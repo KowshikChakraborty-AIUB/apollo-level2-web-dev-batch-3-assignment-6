@@ -19,8 +19,13 @@ const AdminSidebarComponent = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={''}>
+                            <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={'/adminDashboard/addPosts'}>
                                 Add Posts
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={'/adminDashboard/adminFavouritePosts'}>
+                                Favourites
                             </Link>
                         </li>
                     </ul>

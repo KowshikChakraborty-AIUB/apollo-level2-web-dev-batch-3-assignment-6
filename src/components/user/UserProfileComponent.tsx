@@ -6,11 +6,12 @@ import CreatePostsComponent from '../createPostsComponent/CreatePostsComponent';
 import UserSpecificPostsComponent from './UserSpecificPostsComponent';
 import Link from 'next/link';
 import { useGetUserByEmailIdQuery } from '@/redux/api/userApi/userApi';
+import { Button } from '../ui/button';
 
 const UserProfileComponent = () => {
     const userData = useAppSelector((state) => state.auth.user);
     const { data: currentLoggedInUser } = useGetUserByEmailIdQuery(userData?.email || '');
-    
+
 
     return (
         <div>
@@ -48,6 +49,11 @@ const UserProfileComponent = () => {
                             </div>
                         </li>
                     </ul>
+                    <div>
+                        <Link href={'/favouritePosts'}>
+                            <Button className='mt-2 ml-2 text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Favourites</Button>
+                        </Link>
+                    </div>
                     <div className='mt-6'>
                         <Link href={'/followUnfollowUsers'}>
                             <p className='text-center font-bold underline text-[#6AAF07]'>People You May / Want to Follow</p>
