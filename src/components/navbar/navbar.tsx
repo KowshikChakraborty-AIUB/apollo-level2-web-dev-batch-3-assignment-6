@@ -5,6 +5,7 @@ import {
     LayoutDashboardIcon,
     LogOut,
     User,
+    LockKeyholeIcon
 } from "lucide-react"
 
 import {
@@ -107,8 +108,13 @@ const NavbarComponent = () => {
                                                     <span>Manage Profile</span>
                                                 </Link>
                                             </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <LockKeyholeIcon />
+                                                <Link href={`/changeUserPassword`}>
+                                                    <span>Change Password</span>
+                                                </Link>
+                                            </DropdownMenuItem>
                                         </DropdownMenuGroup>
-                                        <DropdownMenuSeparator />
                                         <DropdownMenuSeparator />
                                         <Link href={'/login'} onClick={handleLogout}>
                                             <DropdownMenuItem className="cursor-pointer">
