@@ -24,6 +24,7 @@ import { setUser } from "@/redux/features/authSlice/authSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { JwtPayload } from "jwt-decode";
 
 const LoginComponent = () => {
     const [userLoginInfo, { isLoading }] = useLogInMutation();
@@ -37,6 +38,11 @@ const LoginComponent = () => {
             password: ""
         },
     })
+
+    // Define a custom interface that extends JwtPayload
+    interface CustomJwtPayload extends JwtPayload {
+        role: string;  // or whatever type role should be (e.g., 'admin', 'user')
+    }
 
     const onSubmit = async (values: z.infer<typeof loginValidationSchema>) => {
         if (isLoading) {
@@ -54,11 +60,17 @@ const LoginComponent = () => {
 
             if (res?.data?.success) {
                 const token = res?.data?.token;
-                const user = tokenVerification(token);
+                const user = tokenVerification(token) as CustomJwtPayload;
                 dispatch(setUser({ user, token }));
-                router.push("/");
+                console.log(user);
+                if (user?.role == 'user') {
+                    router.push("/");
+                }
+                if (user?.role == 'admin') {
+                    router.push("/adminDashboard");
+                }
                 toast.success(res?.data?.message);
-                
+
             }
             if (res.error) {
                 toast.error(res?.error?.message || res?.error?.data?.message);
@@ -69,7 +81,7 @@ const LoginComponent = () => {
         } catch (error: any) {
             toast.error(error.message);
             console.log(error.message);
-            
+
         }
     }
     return (
