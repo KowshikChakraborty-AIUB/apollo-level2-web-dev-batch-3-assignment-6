@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
 const baseApiQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "https://apollo-level2-web-dev-batch-3-assignment-6-server-github.vercel.app/",
 
     //credentials: "include",
     prepareHeaders: (headers, { getState }) => {
