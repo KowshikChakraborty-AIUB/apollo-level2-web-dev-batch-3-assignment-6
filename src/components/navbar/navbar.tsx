@@ -98,7 +98,7 @@ const NavbarComponent = () => {
                                         <DropdownMenuGroup>
                                             <DropdownMenuItem>
                                                 <User />
-                                                <Link href={'/userProfile'}>
+                                                <Link href={userData?.role === 'user' ? '/userProfile' : '/adminDashboard'}>
                                                     <span>My Profile</span>
                                                 </Link>
                                             </DropdownMenuItem>

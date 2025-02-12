@@ -64,7 +64,7 @@ const LoginComponent = () => {
                 dispatch(setUser({ user, token }));
                 console.log(user);
                 if (user?.role == 'user') {
-                    router.push("/");
+                    router.push("/userProfile");
                 }
                 if (user?.role == 'admin') {
                     router.push("/adminDashboard");
