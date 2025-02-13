@@ -74,7 +74,7 @@ const ChangeUserPassword = () => {
 
     return (
         <div>
-            <div className="w-3/5 my-10 mx-auto shadow-2xl px-6 py-6 rounded-md">
+            <div className="w-full md:w-3/4 lg:w-3/5 my-10 mx-auto shadow-2xl px-6 py-6 rounded-md">
                 <div className="w-4/5 mx-auto">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
