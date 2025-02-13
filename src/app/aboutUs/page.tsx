@@ -13,7 +13,7 @@ const AboutUsPage = () => {
             >
                 <div className="absolute inset-0 bg-black opacity-60"></div>
                 <div className="relative text-center text-white">
-                    <h1 className="mb-5 text-3xl md:text-5xl font-bold">
+                    <h1 className="mt-14 md:mt-14 lg:mt-0 mb-5 text-3xl md:text-5xl font-bold">
                         Planting Seeds, Building Connections
                     </h1>
                     <p className="mb-5 text-xl text-justify">
