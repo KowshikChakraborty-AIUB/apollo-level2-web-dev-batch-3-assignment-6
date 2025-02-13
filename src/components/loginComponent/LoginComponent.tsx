@@ -39,6 +39,24 @@ const LoginComponent = () => {
         },
     })
 
+    const handleAdminCredentials = () => {
+        const adminCredentials = {
+            email: "kowshik@gmail.com",
+            password: "kowshik123"
+        };
+
+        form.reset({ email: adminCredentials.email, password: adminCredentials.password })
+    }
+
+    const handleUserCredentials = () => {
+        const userCredentials = {
+            email: "bob@gmail.com",
+            password: "bob123456"
+        };
+
+        form.reset({ email: userCredentials.email, password: userCredentials.password })
+    }
+
     // Define a custom interface that extends JwtPayload
     interface CustomJwtPayload extends JwtPayload {
         role: string;  // or whatever type role should be (e.g., 'admin', 'user')
@@ -94,6 +112,14 @@ const LoginComponent = () => {
                     <Image width={600} height={600} src="https://i.ibb.co.com/Qbjbswx/gardening-login-pic.webp" alt="" className="rounded" />
                 </div>
                 <div className="w-full md:full lg:w-1/2 shadow-2xl px-7 py-7 rounded-md">
+                    <div className="flex gap-3 mb-3">
+                        <div>
+                            <p onClick={handleAdminCredentials} className="bg-[#6AAF07] text-center rounded-md text-white font-bold cursor-pointer px-2 py-1">Admin Credentials</p>
+                        </div>
+                        <div>
+                            <p onClick={handleUserCredentials} className="bg-[#6AAF07] text-center rounded-md text-white font-bold cursor-pointer px-2 py-1">User Credentials</p>
+                        </div>
+                    </div>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                             <FormField
