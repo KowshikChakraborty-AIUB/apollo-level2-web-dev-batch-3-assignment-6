@@ -7,7 +7,7 @@ const followUnfollowUsersPage = () => {
         <div>
             <PrivateRouteComponent requiredRole={['user', 'admin']}>
                 <p className='text-3xl font-bold text-center mt-24 mb-14'>People You May Know</p>
-                <FollowUnfollowUsersComponent />
+                <FollowUnfollowUsersComponent className={`grid-cols-3`} />
             </PrivateRouteComponent>
         </div>
     );

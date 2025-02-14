@@ -7,12 +7,14 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { Button } from '../ui/button';
 
-const FollowUnfollowUsersComponent = () => {
+const FollowUnfollowUsersComponent = ({sliceAmount, className}: any) => {
     const { data: allUsersData } = useGetAllUsersQuery({})
     const userData = useAppSelector((state) => state.auth.user);
 
     const filteredUsers = allUsersData?.data?.filter((users: any) => users?.email != userData?.email)
     const currentLoggedInUser = allUsersData?.data?.filter((user: any) => user?.email == userData?.email)
+
+    const displayedUsers = sliceAmount ? filteredUsers?.slice(0, sliceAmount) : filteredUsers;
 
     const [followUnfollowUsers, { isLoading }] = useFollowUnfollowUsersMutation()
 
@@ -45,9 +47,9 @@ const FollowUnfollowUsersComponent = () => {
 
     return (
         <div>
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+            <div className={`grid grid-cols-1 md:${className} lg:${className} gap-6`}>
                 {
-                    filteredUsers?.map((user: any) => {
+                    displayedUsers?.map((user: any) => {
 
                         const isFollowing: any = currentLoggedInUser[0]?.following?.includes(
                             user?._id
