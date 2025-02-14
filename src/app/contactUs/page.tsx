@@ -8,6 +8,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Mail, PhoneCallIcon, MapPin, Watch} from 'lucide-react';
+import Footer from '@/components/footer/Footer';
 
 const ContactUsPage = () => {
     return (
@@ -45,6 +46,7 @@ const ContactUsPage = () => {
                     </Card>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

@@ -74,7 +74,7 @@ const NavbarComponent = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl italic"><span className='text-white'>The Garden</span><span className='text-[#6AAF07]'>Guide</span></a>
+                    <Link href='/' className="btn btn-ghost text-xl italic"><span className='text-white'>The Garden</span><span className='text-[#6AAF07]'>Guide</span></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

@@ -71,12 +71,12 @@ const CarouselComponent = () => {
                 <CarouselNext className="mr-16" />
             </Carousel>
 
-            <div className="flex flex-col md:flex-col lg:flex-row justify-center my-32 gap-10 max-w-7xl mx-auto">
-                <div className="w-full h-full">
-                    <Image className="rounded" width={800} height={800} src={'https://i.ibb.co.com/wFHVwm7G/the-garden-guide-info-gif.gif'} alt=""/>
+            <div className="flex flex-col md:flex-row gap-7 md:gap-2 lg:gap-7 my-32">
+                <div className="md:w-1/3">
+                    <Image className="rounded w-[600px] h-[300px]" width={600} height={300} src={'https://i.ibb.co.com/wFHVwm7G/the-garden-guide-info-gif.gif'} alt=""/>
                 </div>
-                <div>
-                    <p className="text-xl text-justify">
+                <div className="md:w-2/3 flex-none md:flex items-baseline md:items-center">
+                    <p className="text-xl text-justify px-4">
                         <strong>The Garden Guide</strong> is an interactive platform dedicated to bringing gardening enthusiasts together. Whether you&apos;re a seasoned gardener or just starting, our website offers a wealth of tips, advice, and resources to help you grow and nurture your garden. Share your experiences, connect with fellow garden lovers, and discover expert advice on everything from plant care to landscaping. Join our community, get inspired, and take your gardening skills to the next level with The Garden Guide.
                     </p>
                 </div>

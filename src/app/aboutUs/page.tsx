@@ -1,3 +1,4 @@
+import Footer from '@/components/footer/Footer';
 import Image from 'next/image';
 import React from 'react';
 
@@ -54,6 +55,7 @@ const AboutUsPage = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
