@@ -43,6 +43,7 @@ const NavbarComponent = () => {
 
         <>
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Home</a></li></Link>
+            <Link href={'/newsFeed'} className={`hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white ${user ? 'block' : 'hidden'}`}><li className="font-bold"><a>News Feeds</a></li></Link>
             <Link href={'/aboutUs'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>About Us</a></li></Link>
             <Link href={'/'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Gallery</a></li></Link>
             <Link href={'/contactUs'} className={'hover:border-2 hover:border-[#6AAF07] hover:rounded sm:text-black md:text-black lg:text-white'}><li className="font-bold"><a>Contact Us</a></li></Link>

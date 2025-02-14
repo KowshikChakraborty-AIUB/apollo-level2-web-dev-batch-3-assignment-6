@@ -16,13 +16,13 @@ const ShowSpecificUserComentsComponent = (props: any) => {
                 commentsByPostId?.data?.map((comments: any) =>
 
                     <div key={comments._id}>
-                        <div className="flex gap-2 my-4">
+                        <div className="flex gap-2">
                             <Image width={32} height={32} src={comments?.userId?.profileImg ? comments?.userId?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt="user image" className="w-8 h-8 rounded-full"></Image>
                             <p className="font-bold">
                                 {comments.userId.name}
                             </p>
                         </div>
-                        <p className="text-lg">
+                        <p className="text-lg ml-10">
                             {comments.commentText}
                         </p>
                     </div>

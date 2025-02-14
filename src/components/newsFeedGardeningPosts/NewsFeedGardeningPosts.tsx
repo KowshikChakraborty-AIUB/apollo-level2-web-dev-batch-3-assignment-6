@@ -16,7 +16,7 @@ import ShowSpecificUserComentsComponent from '../user/ShowSpecificUserComentsCom
 import Image from 'next/image';
 import { useCreateFavouritePostsMutation, useGetUserFavouritePostsQuery } from '@/redux/api/favouritePostsApi/favouritePostsApi';
 
-const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
+const NewsFeedGardeningPosts = ({ sliceAmount, className}: any) => {
     const { data: postsData } = useGetAllPostsQuery({});
 
     //console.log(postsData?.data);
@@ -155,7 +155,7 @@ const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
 
     return (
         <div>
-            <div className='grid grid-cols-1 w-full md:w-4/6 mx-auto gap-16'>
+            <div className={`grid grid-cols-1 w-full md:${className} mx-auto gap-16`}>
 
 
                 {
@@ -167,7 +167,7 @@ const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
 
 
                         return (
-                            <Card key={post._id} className="bg-[#96c456] shadow-xl">
+                            <Card key={post._id} className="bg-white shadow-2xl">
                                 <div className='flex justify-between items-center'>
                                     <div className='flex items-center gap-4 pl-4 pt-4'>
                                         <Image width={56} height={56} src={post?.userId?.profileImg ? post?.userId?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt='' className='h-14 w-14 rounded-full'></Image>
@@ -190,12 +190,12 @@ const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
                                         />
                                     </div>
                                 </CardContent>
-                                <div className='ml-5 mt-5'>
-                                    <p className='text-lg font-bold mb-3'>Comments</p>
+                                <div className='ml-5 mt-20'>
+                                    <p className='text-lg font-bold mb-5'>Comments</p>
                                     <ShowSpecificUserComentsComponent postId={post?._id} />
                                 </div>
                                 <div>
-                                    <div className='flex justify-center items-center gap-4 mt-16 mb-4 px-0 md:px-3 lg:px-0'>
+                                    <div className='flex justify-center items-center gap-4 mt-20 mb-4 px-0 md:px-3'>
                                         <div className='flex flex-col md:flex-row gap-3 items-center'>
                                             <p className='text-2xl font-bold cursor-pointer' onClick={() => handleAddUpvotes(post?._id, userId)}>&#8593;</p>
                                             <p className='font-bold'>{post?.upvote?.length}</p>
@@ -204,7 +204,7 @@ const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
                                             <p className='text-2xl font-bold cursor-pointer' onClick={() => handleAddDownvotes(post?._id, userId)}>&#8595;</p>
                                             <p className='font-bold'>{post?.downvote?.length}</p>
                                         </div>
-                                        <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-full md:w-1/2 rounded px-2 py-2' name="" id=""></textarea>
+                                        <textarea value={textareaValue[post._id] || ''} onChange={(event) => handleChange(post._id, event)} className='w-full md:w-1/2 rounded px-2 py-2 border border-black' name="" id=""></textarea>
                                         <Button onClick={() => handleAddComment(post?._id)} className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Add comment</Button>
                                     </div>
                                 </div>
