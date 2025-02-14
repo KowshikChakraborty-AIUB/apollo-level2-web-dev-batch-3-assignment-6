@@ -16,10 +16,12 @@ import ShowSpecificUserComentsComponent from '../user/ShowSpecificUserComentsCom
 import Image from 'next/image';
 import { useCreateFavouritePostsMutation, useGetUserFavouritePostsQuery } from '@/redux/api/favouritePostsApi/favouritePostsApi';
 
-const NewsFeedGardeningPosts = () => {
+const NewsFeedGardeningPosts = ({ sliceAmount }: any) => {
     const { data: postsData } = useGetAllPostsQuery({});
 
     //console.log(postsData?.data);
+
+    const displayedPostsData = sliceAmount ? postsData?.data?.slice(0, sliceAmount) : postsData?.data;
 
 
     const [textareaValue, setTextareaValue] = useState<{ [key: string]: string }>({});
@@ -157,12 +159,12 @@ const NewsFeedGardeningPosts = () => {
 
 
                 {
-                    postsData?.data?.map((post: any) => {
+                    displayedPostsData?.map((post: any) => {
 
-                        const userFavouritePostsDataObject = userFavouritePostsData?.data?.find((userFav: any) => userFav?.postId?._id == post?._id )
+                        const userFavouritePostsDataObject = userFavouritePostsData?.data?.find((userFav: any) => userFav?.postId?._id == post?._id)
 
                         //console.log(userFavouritePostsDataObject)
-                        
+
 
                         return (
                             <Card key={post._id} className="bg-[#96c456] shadow-xl">
