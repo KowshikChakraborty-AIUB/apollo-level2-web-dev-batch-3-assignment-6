@@ -2,9 +2,7 @@
 import { useGetUserByEmailIdQuery } from '@/redux/api/userApi/userApi';
 import { useAppSelector } from '@/redux/hook';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import { Button } from '../ui/button';
 
 const AdminProfileComponents = () => {
     const userData = useAppSelector((state) => state.auth.user);
@@ -45,16 +43,6 @@ const AdminProfileComponents = () => {
                         </div>
                     </li>
                 </ul>
-                <div className='mt-4 ml-4'>
-                    <Link href={`/manageUserProfile/${userData?.email}`}>
-                        <Button className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Manage Profile</Button>
-                    </Link>
-                </div>
-                <div className='mt-6'>
-                    <Link href={'/followUnfollowUsers'}>
-                        <p className='text-center font-bold underline text-[#6AAF07]'>People You May / Want to Follow</p>
-                    </Link>
-                </div>
             </div>
         </div>
     );

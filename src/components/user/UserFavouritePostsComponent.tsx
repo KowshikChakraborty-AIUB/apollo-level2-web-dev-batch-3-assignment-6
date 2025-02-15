@@ -148,7 +148,7 @@ const UserFavouritePostsComponent = () => {
 
     return (
         <div>
-            <p className='mt-20 text-3xl text-center font-bold'>Your Favourite Lists</p>
+            <p className='text-3xl text-center font-bold'>Your Favourite Lists</p>
 
             <div className='mt-14 grid grid-cols-1 w-full md:w-full lg:w-4/6 mx-auto gap-16'>
                 {
@@ -159,7 +159,7 @@ const UserFavouritePostsComponent = () => {
                             const userFavouritePostsDataObject = userFavouritePostsData?.data?.find((userFav: any) => userFav?.postId?._id == post?.postId?._id)
 
                             return (
-                                <Card key={post?.postId?._id} className="bg-[#96c456] shadow-xl">
+                                <Card key={post?.postId?._id} className="bg-white shadow-2xl">
                                     <div className='flex justify-between items-center'>
                                         <div className='flex items-center gap-4 pl-4 pt-4'>
                                             <Image width={56} height={56} src={post?.postId?.userId?.profileImg ? post?.postId?.userId?.profileImg : 'https://i.ibb.co.com/p4xjpjk/user-default.png'} alt='' className='h-14 w-14 rounded-full'></Image>
@@ -182,8 +182,8 @@ const UserFavouritePostsComponent = () => {
                                             />
                                         </div>
                                     </CardContent>
-                                    <div className='ml-5 mt-5'>
-                                        <p className='text-lg font-bold mb-3'>Comments</p>
+                                    <div className='ml-5 mt-20'>
+                                        <p className='text-lg font-bold mb-5'>Comments</p>
                                         <ShowSpecificUserComentsComponent postId={post?.postId?._id} />
                                     </div>
                                     <div>
@@ -196,7 +196,7 @@ const UserFavouritePostsComponent = () => {
                                                 <p className='text-2xl font-bold cursor-pointer' onClick={() => handleAddDownvotes(post?.postId?._id, userId)}>&#8595;</p>
                                                 <p className='font-bold'>{post?.postId?.downvote?.length}</p>
                                             </div>
-                                            <textarea value={textareaValue[post?.postId?._id] || ''} onChange={(event) => handleChange(post?.postId?._id, event)} className='w-1/2 rounded px-2 py-2' name="" id=""></textarea>
+                                            <textarea value={textareaValue[post?.postId?._id] || ''} onChange={(event) => handleChange(post?.postId?._id, event)} className='w-1/2 rounded px-2 py-2 border border-black' name="" id=""></textarea>
                                             <Button onClick={() => handleAddComment(post?.postId?._id)} className='text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>Add comment</Button>
                                         </div>
                                     </div>

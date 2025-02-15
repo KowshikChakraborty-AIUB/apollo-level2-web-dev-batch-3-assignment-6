@@ -67,8 +67,8 @@ const ManageUsersComponent = () => {
                                 <TableCell>{user?.email}</TableCell>
                                 <TableCell className="capitalize font-medium">{user?.role}</TableCell>
                                 <TableCell className="text-right">
-                                    <Button onClick={() => handleUpdateUserRole(user?._id)} className="mr-0 md:mr-0 lg:mr-2 text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">{user?.role === 'admin' ? 'Make User' : 'Make Admin'}</Button>
-                                    <Button className="mt-2 md:mt-2 lg:mt-0 text-base font-bold text-center bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Delete</Button>
+                                    <Button onClick={() => handleUpdateUserRole(user?._id)} className="mr-0 md:mr-0 lg:mr-2 text-base font-bold text-center bg-[#6AAF07] text-white hover:bg-[#6AAF07] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 w-full lg:w-1/2">{user?.role === 'admin' ? 'Make User' : 'Make Admin'}</Button>
+                                    {/* <Button className="mt-2 md:mt-2 lg:mt-0 text-base font-bold text-center bg-red-500 text-white hover:bg-red-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Delete</Button> */}
                                 </TableCell>
                             </TableRow>
                         )
