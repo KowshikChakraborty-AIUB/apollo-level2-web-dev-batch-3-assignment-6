@@ -21,10 +21,20 @@ const commentsApi = baseApi.injectEndpoints({
             },
             providesTags: ["comments"],
         }),
+        getTotalCommentsCount: builder.query({
+            query: () => {
+                return {
+                    url: "/api/comments/totalCommentsCount",
+                    method: "GET",
+                };
+            },
+            providesTags: ["comments"],
+        }),
     }),
 });
 
 export const {
     useCreateCommentsMutation,
     useGetCommentsByPostIdQuery,
+    useGetTotalCommentsCountQuery
 } = commentsApi;

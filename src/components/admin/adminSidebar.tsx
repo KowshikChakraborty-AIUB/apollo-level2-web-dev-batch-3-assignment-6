@@ -10,7 +10,12 @@ const AdminSidebarComponent = () => {
                     <ul className="menu mt-20">
                         <li>
                             <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={'/adminDashboard'}>
-                                Admin Home
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={'/adminDashboard/adminHome'}>
+                                Profile
                             </Link>
                         </li>
                         <li>

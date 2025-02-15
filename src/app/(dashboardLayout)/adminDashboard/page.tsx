@@ -1,10 +1,10 @@
-import AdminProfileComponents from '@/components/admin/AdminProfileComponents';
-import React from 'react';
+import AdminDashboardComponent from "@/components/admin/AdminDashboardComponent";
 
 const AdminDashboardPage = () => {
+
     return (
         <div>
-            <AdminProfileComponents/>
+            <AdminDashboardComponent/>
         </div>
     );
 };

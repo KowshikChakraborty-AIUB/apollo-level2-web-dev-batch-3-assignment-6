@@ -54,7 +54,24 @@ const postApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["gardeningposts"],
         }),
+
+        getTotalPostsCount: builder.query({
+            query: () => {
+                return {
+                    url: "/api/posts/totalPostsCount",
+                    method: "GET",
+                };
+            },
+            providesTags: ["gardeningposts"],
+        }),
     })
 })
 
-export const { useCreatePostsMutation, useGetAllPostsQuery, useGetGardeningPostsByUserIdQuery, useGardeningPostsUpvoteMutation, useGardeningPostsDownvoteMutation } = postApi;
+export const {
+    useCreatePostsMutation,
+    useGetAllPostsQuery,
+    useGetGardeningPostsByUserIdQuery,
+    useGardeningPostsUpvoteMutation,
+    useGardeningPostsDownvoteMutation,
+    useGetTotalPostsCountQuery
+} = postApi;
