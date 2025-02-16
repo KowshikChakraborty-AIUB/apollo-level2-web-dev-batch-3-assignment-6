@@ -4,9 +4,9 @@ import Link from "next/link";
 const AdminSidebarComponent = () => {
     return (
         <div>
-            <div className="flex">
+            <div className="flex md:h-screen">
                 {/* dashboard sidebar */}
-                <div className="w-full md:w-64 min-h-screen bg-[#6AAF07] shadow-xl">
+                <div className="w-full md:w-64 md:h-screen bg-[#6AAF07] shadow-xl md:fixed md:left-0 md:top-0">
                     <ul className="menu mt-20">
                         <li>
                             <Link className="text-base font-bold text-white border md:border-none border-white mb-4 md:mb-0" href={'/adminDashboard'}>
