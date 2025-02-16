@@ -1,8 +1,10 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetTotalCommentsCountQuery } from '@/redux/api/commentsApi/commentsApi';
+import { useGetPostsAndCommentsTrendQuery, useGetTotalCommentsCountQuery } from '@/redux/api/commentsApi/commentsApi';
 import { useGetTotalPostsCountQuery } from '@/redux/api/postApi/postApi';
 import { useGetTotalUsersCountQuery } from '@/redux/api/userApi/userApi';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+//import { Skeleton } from "@/components/ui/skeleton";
 import React from 'react';
 
 const AdminDashboardComponent = () => {
@@ -11,6 +13,8 @@ const AdminDashboardComponent = () => {
     const { data: totalPostsData } = useGetTotalPostsCountQuery({})
 
     const { data: totalCommentsData } = useGetTotalCommentsCountQuery({})
+
+    const {data: postsAndCommentsTrend} = useGetPostsAndCommentsTrendQuery({})
 
     return (
         <div>
@@ -42,23 +46,24 @@ const AdminDashboardComponent = () => {
                     </CardContent>
                 </Card>
 
-                {/* <div className="col-span-1 md:col-span-3">
+                <div className="mt-20 col-span-1 md:col-span-3">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Active Users Over Time</CardTitle>
+                            <CardTitle>Posts and Comments Trend</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ResponsiveContainer width="100%" height={300}>
-                                <LineChart data={data.activeUsers}>
+                                <LineChart data={postsAndCommentsTrend?.data}>
                                     <XAxis dataKey="date" stroke="#6AAF07" />
                                     <YAxis />
                                     <Tooltip />
-                                    <Line type="monotone" dataKey="users" stroke="#6AAF07" strokeWidth={2} />
+                                    <Line type="monotone" dataKey="posts" stroke="#6AAF07" strokeWidth={2} />
+                                    <Line type="monotone" dataKey="comments" stroke="#FF5733" strokeWidth={2} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </CardContent>
                     </Card>
-                </div> */}
+                </div>
             </div>
         </div>
     );

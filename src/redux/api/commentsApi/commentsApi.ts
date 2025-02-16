@@ -30,11 +30,22 @@ const commentsApi = baseApi.injectEndpoints({
             },
             providesTags: ["comments"],
         }),
+
+        getPostsAndCommentsTrend: builder.query({
+            query: () => {
+                return {
+                    url: "/api/comments/postsAndCommentsTrend",
+                    method: "GET",
+                };
+            },
+            providesTags: ["comments"],
+        }),
     }),
 });
 
 export const {
     useCreateCommentsMutation,
     useGetCommentsByPostIdQuery,
-    useGetTotalCommentsCountQuery
+    useGetTotalCommentsCountQuery,
+    useGetPostsAndCommentsTrendQuery
 } = commentsApi;
