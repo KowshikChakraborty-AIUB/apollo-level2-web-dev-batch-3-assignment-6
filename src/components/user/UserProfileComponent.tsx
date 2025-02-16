@@ -57,7 +57,7 @@ const UserProfileComponent = () => {
                     </div>
                 </div>
                 <div className='order-3 md:order-3 lg:order-2 w-full lg:w-2/5 lg:mx-auto'>
-                    <p className='text-center mt-10 mb-4 text-lg font-bold'>Post Something</p>
+                    <p className='text-center mt-10 mb-4 text-lg font-bold'>Create a post</p>
                     <CreatePostsComponent />
                     <p className='text-3xl font-bold text-center mt-20 mb-10'>Your Posts</p>
                     <UserSpecificPostsComponent userId={userData?._id} />
