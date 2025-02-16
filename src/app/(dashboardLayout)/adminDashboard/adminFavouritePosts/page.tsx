@@ -4,7 +4,8 @@ import React from 'react';
 const adminFavouritePostsPage = () => {
     return (
         <div>
-            <UserFavouritePostsComponent/>
+            <p className='text-3xl text-center font-bold'>Your Favourite Lists</p>
+            <UserFavouritePostsComponent />
         </div>
     );
 };

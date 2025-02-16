@@ -3,11 +3,12 @@ import CreatePostsComponent from '@/components/createPostsComponent/CreatePostsC
 import React from 'react';
 
 const addPostsPage = () => {
-    
+
     return (
         <div>
             <CreatePostsComponent />
-            <AdminSpecificPostsComponent/>
+            <p className='mt-32 mb-14 text-3xl text-center font-bold'>Your Posts</p>
+            <AdminSpecificPostsComponent />
         </div>
     );
 };

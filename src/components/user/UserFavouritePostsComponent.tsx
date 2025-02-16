@@ -148,8 +148,6 @@ const UserFavouritePostsComponent = () => {
 
     return (
         <div>
-            <p className='text-3xl text-center font-bold'>Your Favourite Lists</p>
-
             <div className='mt-14 grid grid-cols-1 w-full md:w-full lg:w-4/6 mx-auto gap-16'>
                 {
                     userFavouritePostsData?.data?.length

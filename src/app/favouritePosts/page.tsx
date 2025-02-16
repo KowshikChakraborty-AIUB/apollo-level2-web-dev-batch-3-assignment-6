@@ -6,6 +6,7 @@ const favouritePostsPage = () => {
     return (
         <div>
             <PrivateRouteComponent requiredRole={['user']}>
+                <p className='mt-32 text-3xl text-center font-bold'>Your Favourite Lists</p>
                 <UserFavouritePostsComponent />
             </PrivateRouteComponent>
         </div>
